@@ -1,0 +1,39 @@
+{% extends 'web/index.html' %}
+
+{% block content2 %}
+    <div class="pagelist">
+        {% for i in range(p.pages) %}
+            {% if i + 1 == p.page %}
+                <a href="{{ url_for('blue.list', page=i + 1) }}" class="curPage">
+            {% else %}
+                <a href="{{ url_for('blue.list', page=i + 1) }}">
+            {% endif %}
+            {{ i + 1 }}
+            </a>
+        {% endfor %}
+
+{#        <a class="allpage"><b>99</b></a>&nbsp;&nbsp;#}
+{#        <a href="#" class="curPage">1</a>&nbsp;&nbsp;#}
+{#        <a href="#" onclick="page(2)">2</a>&nbsp;&nbsp;#}
+{#        <a href="#" onclick="page(3)">3</a>&nbsp;&nbsp;#}
+{#        <a href="#" onclick="page(4)">4</a>&nbsp;&nbsp;#}
+{#        <a href="#" onclick="page(5)">5</a>&nbsp;&nbsp;#}
+{#        <a href="#" onclick="page(6)">6</a>&nbsp;&nbsp;#}
+{#        <a href="#" onclick="page(7)">7</a>&nbsp;&nbsp;#}
+{#        <a href="#" onclick="page(8)">8</a>&nbsp;&nbsp;#}
+{#        <a href="#" onclick="page(9)">9</a>&nbsp;&nbsp;#}
+{#        <a href="{{ url_for('blue.list') }}" onclick="page(2)">下一页</a>#}
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% for num in range(p.per_page) %}
+        <li><i><a href="/"><img src="/static/web/images/{{ data['articles'][num].imags }}.jpg"></a></i>
+        <h3><a href="{{ url_for('blue.article_detail', aid=data['articles'][num].id) }}">{{ data['articles'][num].title }}</a></h3>
+        <p>{{ data['articles'][num].content }}</p>
+        </li>
+    {% endfor %}
+
+{% endblock %}
+
+
